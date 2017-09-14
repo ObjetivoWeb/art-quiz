@@ -2,18 +2,10 @@
 layout: default
 ---
 
-<div class="wrapper app">
-    <h2>Quiz</h2>
-    <div data-grid="row spacing" class="question" id="monalisa">
-        <div data-cell="1of2">
-            <img src="{{ site.baseurl }}/img/obras/monalisa.jpg" alt="Monalisa">
-        </div>
-        <div data-cell="1of2">
-            <p>Ela está sorrindo?</p>
-            <p><input type="button" value="Sim"></p>
-            <p><input type="button" value="Não"></p>
-            <p><input type="button" value="Eu meio que não sei"></p>
-            <div class="feedback"></div>
-        </div>
-    </div>
-</div>
+{% for quiz in site.quiz %}
+
+    <p>
+        <a href="{{ site.baseurl }}{{ quiz.url }}">{{ quiz.title }}</a>
+    </p>
+
+{% endfor %}

@@ -1,16 +1,16 @@
 ---
-title: QUIZ Obras de arte
+title: QUIZ
 timezone: UTC
 collections:
-  obras:
-    title: Obras
+  quiz:
+    title: Quiz
     output: true
 defaults:
 - scope:
     path: ''
-    type: obras
+    type: quiz
   values:
-    layout: null
+    layout: quiz
 description: Coloque descrição aqui
 baseurl: "/art-quiz"
 url: http://objetivoweb.com.br

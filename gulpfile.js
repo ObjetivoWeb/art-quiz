@@ -42,7 +42,7 @@ gulp.task('browser-sync', ['jekyll-build'], function() {
  * if you add folder for pages, collection or datas, add them to this list
  */
 gulp.task('watch', function () {
-    gulp.watch(['./*', '_layouts/*', '_includes/*', '_data/*', '_sass/*', 'css/*', 'js/*', 'img/**'], ['jekyll-rebuild']);
+    gulp.watch(['./*', '_layouts/*', '_includes/*', '_data/*', '_quiz/*', '_sass/*', 'css/*', 'js/*', 'img/**'], ['jekyll-rebuild']);
 });
 
 /**

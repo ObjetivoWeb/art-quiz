@@ -1,0 +1,28 @@
+---
+layout: page
+---
+
+<div class="wrapper app" data-grid="row spacing">
+
+    <div data-cell="1of2">
+        <img src="http://lorempixel.com/500/500/abstract/" alt="Art placeholder" class="picture">
+    </div>
+
+    <div data-cell="1of2">
+        <header class="title"></header>
+        <section class="question"></section>
+        <section class="options"></section>
+        <footer>
+            <div class="feedback"></div>
+            <div class="controls"></div>
+        </footer>
+    </div>
+
+</div>
+
+{{ content }}
+
+<script>
+window.imgFolder = '{{ page.img_folder }}';
+window.quiz = {{ page.quiz | jsonify }};
+</script>
