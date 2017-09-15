@@ -1,3 +1,7 @@
+%shrink
+    flex-grow: 0
+    flex-shrink: 1
+
 +module(grid)
     > *
         display: inline-block
@@ -6,13 +10,30 @@
     +module(grid)
         display: flex
 
-    +variant(row)
-        flex-direction: row
-        > *
-            display: inline-block
+    +variant(spacing)
+        >
+            & :not(:last-child)
+                margin-left: 0
+                margin-right: $spacing-unit
+            [data-cell~="order-1"]
+                margin-left: $spacing-unit
+                margin-right: 0
+            & :not(:last-child), [data-cell~="order-1"]
+                +media-query($on-palm)
+                    margin: 0
+                    margin-bottom: $spacing-unit / 2
 
     +variant(column)
         flex-direction: column
+        >
+            *
+                display: block
+            & :not(:last-child), [data-cell~="order-1"]
+                margin: 0
+                margin-bottom: $spacing-unit / 2
+
+    +variant(row)
+        flex-direction: row
 
     +variant(wrap)
         flex-wrap: wrap
@@ -35,9 +56,13 @@
 
     +variant(justify)
         justify-content: space-between
+        > *
+            @extend %shrink
 
     +variant(around)
         justify-content: space-around
+        > *
+            @extend %shrink
 
     +variant(center)
         align-items: center
@@ -46,29 +71,18 @@
     +variant(stretch)
         align-items: stretch
 
-    +variant(spacing)
-        +media-greater($on-palm)
-            > :not(:last-child):not([data-cell~="order-1"])
-                margin-right: $spacing-unit
-            > [data-cell~="order-1"]
-                margin-left: $spacing-unit
-
-        +media-query($on-palm)
-            > *
-                margin-bottom: $spacing-unit / 2
-
-    +variant(small-spacing)
-        +media-greater($on-palm)
-            > :not(:last-child):not([data-cell~="order-1"])
-                margin-right: $spacing-unit / 4
-            > [data-cell~="order-1"]
-                margin-left: $spacing-unit / 4
-
-        +media-query($on-palm)
-            > *
-                margin-bottom: $spacing-unit / 4
-
     +module(cell)
+
+        +variant(shrink)
+            @extend %shrink
+
+        +variant(stretch)
+            align-self: stretch
+
+        +variant(order-1)
+            +media-greater($on-palm)
+                order: 1
+
         +variant(1of2)
             flex-basis: 50%
 
@@ -84,13 +98,6 @@
         +variant(2of3)
             flex-basis: 66.666%
 
-        +variant(nospace)
-            margin-left: 0
-            margin-right: 0
-
-        +variant(shrink)
-            flex: 0 1 auto
-
         +variant(center)
             align-self: center
 
@@ -100,23 +107,7 @@
         +variant(end)
             align-self: flex-end
 
-        +variant(stretch)
-            align-self: stretch
-
-        +media-greater($on-palm)
-
-            +variant(order-1)
-                order: 1
-
         +media-query($on-palm)
-            margin-left: 0
-            margin-right: 0
-
-            +variant(nospace)
-                margin-bottom: 0
-
-            +variant(fill)
-                width: 100%
 
     +variant(cols-2)
         flex-wrap: wrap
@@ -126,16 +117,22 @@
                 flex-basis: 45%
                 flex-basis: calc(50% - #{$spacing-unit})
                 &:nth-child(even)
+                    margin-left: 0
                     margin-right: 0
 
     +media-query($on-palm)
+
+        +variant(fill)
+            width: 100%
+
         &:not([data-grid~="row"])
             flex-direction: column
             height: auto
+
             > *
                 display: block
                 height: auto
                 flex-basis: auto
+
             > [data-grid]
                 display: flex
-
