@@ -2,10 +2,14 @@
 layout: default
 ---
 
-{% for quiz in site.quiz %}
-
-    <p>
-        <a href="{{ site.baseurl }}{{ quiz.url }}">{{ quiz.title }}</a>
-    </p>
-
-{% endfor %}
+<section class="page-content">
+    <div class="wrapper">
+        {% for quiz in site.quiz %}
+    
+        <p>
+            <a href="{{ site.baseurl }}{{ quiz.url }}">{{ quiz.title }}</a>
+        </p>
+    
+        {% endfor %}
+    </div>
+</section>
